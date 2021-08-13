@@ -1,1 +1,47 @@
 @import "reset.css";
+
+:root {
+    --darkGrey: #343f3c;
+    --sapphire: #276466;
+    --tan: #D9B08C;
+    --peach: #F7CB9B;
+    --platinum: #D2E9E2;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+    color: #FEFEFE;
+}
+
+.main {
+    height: 100%;
+    width: auto;
+    background-color: var(--darkGrey);
+    font-family: Verdana, 'sans-serif';
+}
+
+.calc-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calc-body {
+    height: 70vh;
+    width: 53vh;
+    background-color: var(--sapphire);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.display-window {
+    height: 17%;
+    width: 92%;
+    background-color: var(--platinum);
+    border-radius: 10px;
+    margin-top: 20px;
+}
