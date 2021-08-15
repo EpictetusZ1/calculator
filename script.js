@@ -17,3 +17,27 @@ const addBtn = document.getElementById("addition")
 const zeroBtn = document.getElementById("zero")
 const decimalBtn = document.getElementById("decimal")
 const equalsBtn = document.getElementById("equals")
+
+function add(num1, num2) {
+    return num1 + num2
+}
+
+function subtract(num1, num2) {
+    return num1 - num2
+}
+
+function multiply(num1, num2) {
+    return num1 * num2
+}
+
+function divide(num1, num2) {
+    return num1 / num2
+}
+
+function percentage(num1) {
+    return num1 / 100
+}
+
+function operate(num1, operation, num2) {
+    return operation(num1, num2)
+}
