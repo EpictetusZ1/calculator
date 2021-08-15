@@ -9,7 +9,7 @@ const multiplyBtn = document.getElementById("multiply")
 const fourBtn = document.getElementById("four")
 const fiveBtn = document.getElementById("five")
 const sixBtn = document.getElementById("six")
-const minusBtn = document.getElementById("minus")
+const subtractBtn = document.getElementById("minus")
 const oneBtn = document.getElementById("one")
 const twoBtn = document.getElementById("two")
 const threeBtn = document.getElementById("three")
@@ -46,7 +46,6 @@ const displayContent = document.getElementById("result-display")
 
 clearBtn.addEventListener("click", () => displayContent.textContent = "")
 
-const startVal = 0
 let valueArray = []
 let currValue
 
@@ -67,20 +66,19 @@ zeroBtn.addEventListener("click",() => {
 
 const allNumBtn = document.querySelectorAll(".num-btn")
 
-allNumBtn.forEach((btn) => btn.addEventListener("click", displayNum))
+allNumBtn.forEach((btn) => btn.addEventListener("click", getNumVal))
 
-function displayNum() {
+function displayNum(currVal) {
+    displayContent.textContent = currVal.toString()
+}
+
+function getNumVal() {
     if (this === zeroBtn && valueArray.length === 0) {
-        currValue = startVal
-        console.log(currValue)
+        currValue = 0
         return currValue
-    } else if (valueArray[0] !== startVal) {
-        currValue = valueArray.map(Number)
-        console.log(currValue)
+    } else if (valueArray[0] !== 0) {
+        currValue = parseInt(valueArray.join(''))
+        displayNum(currValue)
         return currValue
     }
 }
-
-
-
-
