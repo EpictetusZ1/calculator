@@ -41,3 +41,46 @@ function percentage(num1) {
 function operate(num1, operation, num2) {
     return operation(num1, num2)
 }
+
+const displayContent = document.getElementById("result-display")
+
+clearBtn.addEventListener("click", () => displayContent.textContent = "")
+
+const startVal = 0
+let valueArray = []
+let currValue
+
+oneBtn.addEventListener("click",() => valueArray.push(1))
+twoBtn.addEventListener("click",() => valueArray.push(2))
+threeBtn.addEventListener("click",() => valueArray.push(3))
+fourBtn.addEventListener("click",() => valueArray.push(4))
+fiveBtn.addEventListener("click",() => valueArray.push(5))
+sixBtn.addEventListener("click",() => valueArray.push(6))
+sevenBtn.addEventListener("click",() => valueArray.push(7))
+eightBtn.addEventListener("click",() => valueArray.push(8))
+nineBtn.addEventListener("click",() => valueArray.push(9))
+zeroBtn.addEventListener("click",() => {
+    if (valueArray.length > 0) {
+        valueArray.push(0)
+    }
+})
+
+const allNumBtn = document.querySelectorAll(".num-btn")
+
+allNumBtn.forEach((btn) => btn.addEventListener("click", displayNum))
+
+function displayNum() {
+    if (this === zeroBtn && valueArray.length === 0) {
+        currValue = startVal
+        console.log(currValue)
+        return currValue
+    } else if (valueArray[0] !== startVal) {
+        currValue = valueArray.map(Number)
+        console.log(currValue)
+        return currValue
+    }
+}
+
+
+
+
