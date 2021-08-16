@@ -38,20 +38,48 @@ function percentage(num1) {
     return num1 / 100
 }
 
-function operate(num1, operation, num2) {
-    return operation(num1, num2)
+function operate(num1, num2) {
+    if (operation === 1) {
+        return add(num1, num2)
+    } else if (operation === 2) {
+        return subtract(num1, num2)
+    } else if (operation === 3) {
+        return multiply(num1, num2)
+    } else if (operation === 4) {
+        return divide(num1, num2)
+    }
 }
 
 const displayContent = document.getElementById("result-display")
 
-clearBtn.addEventListener("click", () => {
+clearBtn.addEventListener("click", clearScreen)
+
+function clearScreen() {
     displayContent.textContent = startVal.toString()
     valueArray = []
-    operandOne = 0
-})
+    clearValues()
+}
+
+function clearValues() {
+    if (result) {
+        operandOne = null
+        operandTwo = null
+        result = null
+    }
+    if (operation) {
+        operandOne = null
+        operandTwo = null
+        operation = null
+        result = null
+    }
+}
 
 let valueArray = []
 const startVal = 0
+let operandOne
+let operandTwo
+let operation
+let result
 
 oneBtn.addEventListener("click",() => valueArray.push(1))
 twoBtn.addEventListener("click",() => valueArray.push(2))
@@ -76,8 +104,6 @@ function displayNum(currVal) {
     displayContent.textContent = currVal.toString()
 }
 
-let operandOne
-
 function holdValue() {
     let currValue
     if (valueArray.length === 0) {
@@ -87,6 +113,29 @@ function holdValue() {
     } else {
         currValue = parseInt(valueArray.join(""))
         displayNum(currValue)
-        return operandOne = currValue
+        if (! operandOne) {
+            return operandOne = currValue
+        } else if (operandOne) {
+            return operandTwo = currValue
+        }
     }
 }
+
+const allOperators = document.querySelectorAll(".operator")
+
+allOperators.forEach((btn) => btn.addEventListener("click", holdOperation))
+
+function holdOperation() {
+    clearScreen()
+    if (this === addBtn) {
+        return operation = 1
+    } else if (this === subtractBtn) {
+        return operation = 2
+    } else if (this === multiplyBtn) {
+        return operation = 3
+    } else if (this === divideBtn) {
+        return operation = 4
+    }
+}
+
+equalsBtn.addEventListener("click",() => result = operate(operandOne, operandTwo))
