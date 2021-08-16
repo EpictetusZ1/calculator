@@ -44,10 +44,14 @@ function operate(num1, operation, num2) {
 
 const displayContent = document.getElementById("result-display")
 
-clearBtn.addEventListener("click", () => displayContent.textContent = "")
+clearBtn.addEventListener("click", () => {
+    displayContent.textContent = startVal.toString()
+    valueArray = []
+    operandOne = 0
+})
 
 let valueArray = []
-let currValue
+const startVal = 0
 
 oneBtn.addEventListener("click",() => valueArray.push(1))
 twoBtn.addEventListener("click",() => valueArray.push(2))
@@ -66,19 +70,23 @@ zeroBtn.addEventListener("click",() => {
 
 const allNumBtn = document.querySelectorAll(".num-btn")
 
-allNumBtn.forEach((btn) => btn.addEventListener("click", getNumVal))
+allNumBtn.forEach((btn) => btn.addEventListener("click", holdValue))
 
 function displayNum(currVal) {
     displayContent.textContent = currVal.toString()
 }
 
-function getNumVal() {
-    if (this === zeroBtn && valueArray.length === 0) {
+let operandOne
+
+function holdValue() {
+    let currValue
+    if (valueArray.length === 0) {
         currValue = 0
-        return currValue
-    } else if (valueArray[0] !== 0) {
-        currValue = parseInt(valueArray.join(''))
         displayNum(currValue)
-        return currValue
+        return operandOne = currValue
+    } else {
+        currValue = parseInt(valueArray.join(""))
+        displayNum(currValue)
+        return operandOne = currValue
     }
 }
