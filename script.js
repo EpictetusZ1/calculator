@@ -46,6 +46,11 @@ function operate(num1, num2) {
     } else if (operation === 3) {
         return multiply(num1, num2)
     } else if (operation === 4) {
+        if (num1 === 0 || num2 === 0) {
+            displayContent.textContent = "YOU SHALL NOT PASS"
+            evaluated = false
+            return clearValues()
+        }
         return divide(num1, num2)
     }
 }
@@ -57,16 +62,16 @@ clearBtn.addEventListener("click", clearScreen)
 function clearScreen() {
     displayContent.textContent = startVal.toString()
     valueArray = []
-    clearValues()
+    if (! evaluated) {
+        clearValues()
+    }
 }
 
 function clearValues() {
-    if (evaluated) {
-        return
-    }
     if (operation) {
         operandOne = null
         operandTwo = null
+        operation = null
         result = null
     }
 }
@@ -112,7 +117,6 @@ function holdValue() {
     }  else {
         currValue = parseInt(valueArray.join(""))
         displayNum(currValue)
-        console.table(valueArray)
         if (! operation) {
             return operandOne = currValue
         } else if (operandOne) {
