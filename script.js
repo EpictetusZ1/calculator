@@ -158,6 +158,24 @@ equalsBtn.addEventListener("click", () => {
     }
 })
 
+posNegBtn.addEventListener("click", () => {
+    if (! operandTwo) {
+        if (operandOne > 0) {
+            operandOne = -Math.abs(operandOne)
+        } else {
+            operandOne = Math.abs(operandOne)
+        }
+        displayNum(operandOne)
+    } else if (operandTwo) {
+        if (operandTwo > 0) {
+            operandTwo = -Math.abs(operandTwo)
+        } else {
+            operandTwo = Math.abs(operandTwo)
+        }
+        displayNum(operandTwo)
+    }
+})
+
 const allBtn = document.querySelectorAll(".calc-button")
 
 allBtn.forEach((btn) => btn.addEventListener("click", () => {
