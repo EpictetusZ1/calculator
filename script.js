@@ -61,11 +61,6 @@ function clearScreen() {
 }
 
 function clearValues() {
-    if (result) {
-        operandOne = null
-        operandTwo = null
-        result = null
-    }
     if (operation) {
         operandOne = null
         operandTwo = null
@@ -113,7 +108,7 @@ function holdValue() {
     } else {
         currValue = parseInt(valueArray.join(""))
         displayNum(currValue)
-        if (! operandOne) {
+        if (! operation) {
             return operandOne = currValue
         } else if (operandOne) {
             return operandTwo = currValue
@@ -139,3 +134,8 @@ function holdOperation() {
 }
 
 equalsBtn.addEventListener("click",() => result = operate(operandOne, operandTwo))
+equalsBtn.addEventListener("click", () => {
+    if (result) {
+        displayNum(result)
+    }
+})
