@@ -38,6 +38,13 @@ function percentage(num1) {
     return num1 / 100
 }
 
+percentBtn.addEventListener("click", () => {
+    if (operandOne) {
+        operandOne = percentage(operandOne)
+        return displayNum(operandOne)
+    }
+})
+
 function operate(num1, num2) {
     if (operation === 1) {
         return add(num1, num2)
