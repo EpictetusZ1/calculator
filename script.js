@@ -150,3 +150,10 @@ equalsBtn.addEventListener("click", () => {
         operandOne = result
     }
 })
+
+const allBtn = document.querySelectorAll(".calc-button")
+
+allBtn.forEach((btn) => btn.addEventListener("click", () => {
+    btn.classList.add("shadowed")
+    setTimeout(() => btn.classList.remove("shadowed"), 200)
+}))
