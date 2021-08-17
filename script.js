@@ -61,16 +61,20 @@ function clearScreen() {
 }
 
 function clearValues() {
+    if (evaluated) {
+        return
+    }
     if (operation) {
         operandOne = null
         operandTwo = null
-        operation = null
         result = null
     }
 }
 
-let valueArray = []
 const startVal = 0
+
+let valueArray = []
+let evaluated = false
 let operandOne
 let operandTwo
 let operation
@@ -105,9 +109,10 @@ function holdValue() {
         currValue = 0
         displayNum(currValue)
         return operandOne = currValue
-    } else {
+    }  else {
         currValue = parseInt(valueArray.join(""))
         displayNum(currValue)
+        console.table(valueArray)
         if (! operation) {
             return operandOne = currValue
         } else if (operandOne) {
@@ -137,5 +142,7 @@ equalsBtn.addEventListener("click",() => result = operate(operandOne, operandTwo
 equalsBtn.addEventListener("click", () => {
     if (result) {
         displayNum(result)
+        evaluated = true
+        operandOne = result
     }
 })
