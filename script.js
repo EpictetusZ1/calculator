@@ -56,15 +56,16 @@ function operate(num1, num2) {
         if (num1 === 0 || num2 === 0) {
             displayContent.textContent = "YOU SHALL NOT PASS"
             evaluated = false
-            return clearValues()
+            return clearScreen()
+        } else {
+            return divide(num1, num2)
         }
-        return divide(num1, num2)
     }
 }
 
 const displayContent = document.getElementById("result-display")
 
-clearBtn.addEventListener("click", clearScreen)
+clearBtn.addEventListener("click", clearAll)
 
 function clearScreen() {
     displayContent.textContent = startVal.toString()
@@ -80,7 +81,18 @@ function clearValues() {
         operandTwo = null
         operation = null
         result = null
+        evaluated = false
     }
+}
+
+function clearAll() {
+    displayContent.textContent = startVal.toString()
+    valueArray = []
+    evaluated = false
+    operandOne = null
+    operandTwo = null
+    operation = null
+    result = null
 }
 
 const startVal = 0
