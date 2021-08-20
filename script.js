@@ -101,7 +101,6 @@ decimalBtn.addEventListener("click", () => {
         valueArray.push(".")
         decimal = true
     }
-
 })
 
 function clearScreen() {

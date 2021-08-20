@@ -11,7 +11,7 @@
 html, body {
     height: 100%;
     overflow: hidden;
-    color: black;
+    color: #FEFEFE;
 }
 
 .main {
@@ -30,8 +30,9 @@ html, body {
 }
 
 .calc-body {
-    height: 70vh;
-    width: 50vh;
+    height: auto;
+    width: 95vw;
+    max-width: 450px;
     background-color: var(--sapphire);
     border-radius: 15px;
     border: 3px solid var(--tan);
@@ -57,9 +58,11 @@ html, body {
     height: 90%;
     width: 100%;
     margin-right: 15px;
-    font-size: 1.5em;
+    font-family: Consolas, 'sans-serif';
+    font-size: 2.5em;
     text-align: end;
     line-height: 200%;
+    color: black;
 }
 
 .button-container {
@@ -80,7 +83,15 @@ html, body {
     box-shadow:  0 0 5px black;
     text-align: center;
     align-items: center;
-    font-size: 2.5em;
+    font-size: 2.3em;
+}
+
+.operator {
+   color: black;
+}
+
+#equals {
+    color: black;
 }
 
 .shadowed {
@@ -95,6 +106,7 @@ html, body {
 
 .btn-text {
     line-height: 210%;
+    font-weight: lighter;
 }
 
 .num-btn {
@@ -102,7 +114,7 @@ html, body {
 }
 
 .spec-color {
-    background: #525655;
+    background: #5f6463;
 }
 
 
