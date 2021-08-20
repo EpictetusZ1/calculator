@@ -37,6 +37,11 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
+    if (num1 === 0 || num2 === 0) {
+        clearAllBtn()
+        displayContent.textContent = "ERROR: Dividing by Zero has harmful side effects"
+        return 0
+    }
     return num1 / num2
 }
 
@@ -66,12 +71,14 @@ function operate(num1, num2) {
 
 clearBtn.addEventListener("click", clearAllBtn)
 
+const formattedNum = new Intl.NumberFormat('en-US')
+
 let valueArray = []
 let evaluated = false
 let operandOne = null
 let operandTwo = null
 let operation = null
-let result
+let result = null
 
 oneBtn.addEventListener("click",() => valueArray.push(1))
 twoBtn.addEventListener("click",() => valueArray.push(2))
@@ -117,6 +124,7 @@ allOperators.forEach((btn) => btn.addEventListener("click", holdOperation))
 allNumBtn.forEach((btn) => btn.addEventListener("click", holdValue))
 
 function displayNum(currVal) {
+    currVal = formattedNum.format(currVal)
     displayContent.textContent = currVal.toString()
 }
 
@@ -159,6 +167,26 @@ equalsBtn.addEventListener("click", () => {
         operandOne = result
     }
 })
+
+posNegBtn.addEventListener("click", posNegInt)
+
+function posNegInt() {
+    if (! operation) {
+        if (operandOne > 0) {
+            operandOne = -Math.abs(operandOne)
+        } else if (operandOne < 0) {
+            operandOne = Math.abs(operandOne)
+        }
+        return displayNum(operandOne)
+    } else if (operation) {
+        if (operandTwo > 0) {
+            operandTwo = -Math.abs(operandTwo)
+        } else if (operandTwo < 0) {
+            operandTwo = Math.abs(operandTwo)
+        }
+        return displayNum(operandTwo)
+    }
+}
 
 allBtn.forEach((btn) => btn.addEventListener("click", () => {
     btn.classList.add("shadowed")
