@@ -79,6 +79,7 @@ let operandOne = null
 let operandTwo = null
 let operation = null
 let result = null
+let decimal = false
 
 oneBtn.addEventListener("click",() => valueArray.push(1))
 twoBtn.addEventListener("click",() => valueArray.push(2))
@@ -95,6 +96,14 @@ zeroBtn.addEventListener("click",() => {
     }
 })
 
+decimalBtn.addEventListener("click", () => {
+    if (! decimal) {
+        valueArray.push(".")
+        decimal = true
+    }
+
+})
+
 function clearScreen() {
     displayContent.textContent = startVal.toString()
     valueArray = []
@@ -108,6 +117,7 @@ function clearValues() {
     operandTwo = null
     result = null
     evaluated = false
+    decimal = false
 }
 
 function clearAllBtn() {
@@ -118,6 +128,7 @@ function clearAllBtn() {
     operandTwo = null
     operation = null
     result = null
+    decimal = false
 }
 
 allOperators.forEach((btn) => btn.addEventListener("click", holdOperation))
@@ -135,7 +146,7 @@ function holdValue() {
         displayNum(currValue)
         return operandOne = currValue
     }  else {
-        currValue = parseInt(valueArray.join(""))
+        currValue = parseFloat(valueArray.join(""))
         displayNum(currValue)
         if (! operation && ! evaluated) {
             return operandOne = currValue
