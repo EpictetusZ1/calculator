@@ -18,6 +18,12 @@ const zeroBtn = document.getElementById("zero")
 const decimalBtn = document.getElementById("decimal")
 const equalsBtn = document.getElementById("equals")
 
+const displayContent = document.getElementById("result-display")
+const allBtn = document.querySelectorAll(".calc-button")
+const allOperators = document.querySelectorAll(".operator")
+const allNumBtn = document.querySelectorAll(".num-btn")
+const startVal = 0
+
 function add(num1, num2) {
     return num1 + num2
 }
@@ -46,62 +52,25 @@ percentBtn.addEventListener("click", () => {
 })
 
 function operate(num1, num2) {
-    if (operation === 1) {
-        return add(num1, num2)
-    } else if (operation === 2) {
-        return subtract(num1, num2)
-    } else if (operation === 3) {
-        return multiply(num1, num2)
-    } else if (operation === 4) {
-        if (num1 === 0 || num2 === 0) {
-            displayContent.textContent = "YOU SHALL NOT PASS"
-            evaluated = false
-            return clearScreen()
-        } else {
+    switch (operation) {
+        case 1:
+            return add(num1, num2)
+        case 2:
+            return subtract(num1, num2)
+        case 3:
+            return multiply(num1, num2)
+        case 4:
             return divide(num1, num2)
-        }
     }
 }
 
-const displayContent = document.getElementById("result-display")
-
-clearBtn.addEventListener("click", clearAll)
-
-function clearScreen() {
-    displayContent.textContent = startVal.toString()
-    valueArray = []
-    if (! evaluated) {
-        clearValues()
-    }
-}
-
-function clearValues() {
-    if (operation) {
-        operandOne = null
-        operandTwo = null
-        operation = null
-        result = null
-        evaluated = false
-    }
-}
-
-function clearAll() {
-    displayContent.textContent = startVal.toString()
-    valueArray = []
-    evaluated = false
-    operandOne = null
-    operandTwo = null
-    operation = null
-    result = null
-}
-
-const startVal = 0
+clearBtn.addEventListener("click", clearAllBtn)
 
 let valueArray = []
 let evaluated = false
-let operandOne
-let operandTwo
-let operation
+let operandOne = null
+let operandTwo = null
+let operation = null
 let result
 
 oneBtn.addEventListener("click",() => valueArray.push(1))
@@ -119,8 +88,32 @@ zeroBtn.addEventListener("click",() => {
     }
 })
 
-const allNumBtn = document.querySelectorAll(".num-btn")
+function clearScreen() {
+    displayContent.textContent = startVal.toString()
+    valueArray = []
+    if (operation) {
+        clearValues()
+    }
+}
 
+function clearValues() {
+    operandOne = null
+    operandTwo = null
+    result = null
+    evaluated = false
+}
+
+function clearAllBtn() {
+    displayContent.textContent = startVal.toString()
+    valueArray = []
+    evaluated = false
+    operandOne = null
+    operandTwo = null
+    operation = null
+    result = null
+}
+
+allOperators.forEach((btn) => btn.addEventListener("click", holdOperation))
 allNumBtn.forEach((btn) => btn.addEventListener("click", holdValue))
 
 function displayNum(currVal) {
@@ -136,7 +129,7 @@ function holdValue() {
     }  else {
         currValue = parseInt(valueArray.join(""))
         displayNum(currValue)
-        if (! operation) {
+        if (! operation && ! evaluated) {
             return operandOne = currValue
         } else if (operandOne) {
             return operandTwo = currValue
@@ -144,20 +137,16 @@ function holdValue() {
     }
 }
 
-const allOperators = document.querySelectorAll(".operator")
-
-allOperators.forEach((btn) => btn.addEventListener("click", holdOperation))
-
 function holdOperation() {
     clearScreen()
     if (this === addBtn) {
-        return operation = 1
+         operation = 1
     } else if (this === subtractBtn) {
-        return operation = 2
+         operation = 2
     } else if (this === multiplyBtn) {
-        return operation = 3
+         operation = 3
     } else if (this === divideBtn) {
-        return operation = 4
+         operation = 4
     }
 }
 
@@ -166,29 +155,10 @@ equalsBtn.addEventListener("click", () => {
     if (result) {
         displayNum(result)
         evaluated = true
+        operation = null
         operandOne = result
     }
 })
-
-posNegBtn.addEventListener("click", () => {
-    if (! operandTwo) {
-        if (operandOne > 0) {
-            operandOne = -Math.abs(operandOne)
-        } else {
-            operandOne = Math.abs(operandOne)
-        }
-        displayNum(operandOne)
-    } else if (operandTwo) {
-        if (operandTwo > 0) {
-            operandTwo = -Math.abs(operandTwo)
-        } else {
-            operandTwo = Math.abs(operandTwo)
-        }
-        displayNum(operandTwo)
-    }
-})
-
-const allBtn = document.querySelectorAll(".calc-button")
 
 allBtn.forEach((btn) => btn.addEventListener("click", () => {
     btn.classList.add("shadowed")
