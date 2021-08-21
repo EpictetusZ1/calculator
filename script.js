@@ -225,3 +225,14 @@ allBtn.forEach((btn) => btn.addEventListener("click", () => {
     btn.classList.add("shadowed")
     setTimeout(() => btn.classList.remove("shadowed"), 200)
 }))
+
+document.addEventListener("keydown", (e) => {
+    let keyId = e.key
+    switch (keyId) {
+        case "Delete":
+        case "Backspace":
+            valueArray.pop()
+            holdValue()
+            break
+    }
+})
