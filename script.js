@@ -236,7 +236,9 @@ document.addEventListener("keydown", (e) => {
             valueArray.pop()
             break
         case "0":
-            valueArray.push(0)
+            if (valueArray.length > 0) {
+                valueArray.push(0)
+            }
             break
         case "1":
             valueArray.push(1)
