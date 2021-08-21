@@ -128,9 +128,12 @@ function clearAllBtn() {
     operation = null
     result = null
     decimal = false
+    highlightOpp(operation)
 }
 
 allOperators.forEach((btn) => btn.addEventListener("click", holdOperation))
+
+
 allNumBtn.forEach((btn) => btn.addEventListener("click", holdValue))
 
 function displayNum(currVal) {
@@ -166,6 +169,25 @@ function holdOperation() {
     } else if (this === divideBtn) {
          operation = 4
     }
+    highlightOpp(operation)
+}
+
+function highlightOpp(opperatorVal) {
+    allOperators.forEach((btn) => btn.classList.remove("operator-invert"))
+    switch (opperatorVal) {
+       case 1:
+           addBtn.classList.add("operator-invert")
+           break
+       case 2:
+           subtractBtn.classList.add("operator-invert")
+           break
+       case 3:
+           multiplyBtn.classList.add("operator-invert")
+           break
+       case 4:
+           divideBtn.classList.add("operator-invert")
+           break
+   }
 }
 
 equalsBtn.addEventListener("click",() => result = operate(operandOne, operandTwo))
@@ -174,6 +196,7 @@ equalsBtn.addEventListener("click", () => {
         displayNum(result)
         evaluated = true
         operation = null
+        highlightOpp(operation)
         operandOne = result
     }
 })

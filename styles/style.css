@@ -14,6 +14,7 @@ html, body {
     color: #FEFEFE;
 }
 
+
 .main {
     height: 100%;
     width: auto;
@@ -70,15 +71,20 @@ html, body {
     width: 90%;
     display: grid;
     margin-bottom: 15px;
+    align-items: center;
+    justify-items: center;
     grid-template-rows: repeat(5, 1fr);
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 10px 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select:none;
+    user-select: none;
 }
 
 .calc-button {
     height: 95%;
     width: 95%;
-    background: var(--tan);
     border-radius: 50%;
     box-shadow:  0 0 5px black;
     text-align: center;
@@ -87,11 +93,20 @@ html, body {
 }
 
 .operator {
-   color: black;
+    color: black;
+    background: var(--tan);
+    transition: all 0.3s ease-in-out;
+}
+
+.operator-invert {
+    color: var(--tan);
+    background: black;
+    transition: all 0.3s ease-in-out;
 }
 
 #equals {
     color: black;
+    background: var(--tan);
 }
 
 .shadowed {
@@ -106,7 +121,6 @@ html, body {
 
 .btn-text {
     line-height: 210%;
-    font-weight: lighter;
 }
 
 .num-btn {
