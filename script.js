@@ -147,7 +147,7 @@ function holdValue() {
         currValue = 0
         displayNum(currValue)
         return operandOne = currValue
-    }  else {
+    }  else if (valueArray.length < 13) {
         currValue = parseFloat(valueArray.join(""))
         displayNum(currValue)
         if (! operation && ! evaluated) {
@@ -155,6 +155,8 @@ function holdValue() {
         } else if (operandOne) {
             return operandTwo = currValue
         }
+    } else {
+        valueArray.pop()
     }
 }
 
