@@ -39,7 +39,7 @@ function multiply(num1, num2) {
 function divide(num1, num2) {
     if (num1 === 0 || num2 === 0) {
         clearAllBtn()
-        displayContent.textContent = "ERROR: Dividing by Zero has harmful side effects"
+        displayContent.textContent = "ERR: Nope"
         return 0
     }
     return num1 / num2
