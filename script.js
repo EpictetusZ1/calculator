@@ -232,7 +232,39 @@ document.addEventListener("keydown", (e) => {
         case "Delete":
         case "Backspace":
             valueArray.pop()
-            holdValue()
+            break
+        case "0":
+            valueArray.push(0)
+            break
+        case "1":
+            valueArray.push(1)
+            break
+        case "2":
+            valueArray.push(2)
+            break
+        case "3":
+            valueArray.push(3)
+            break
+        case "4":
+            valueArray.push(4)
+            break
+        case "5":
+            valueArray.push(5)
+            break
+        case "6":
+            valueArray.push(6)
+            break
+        case "7":
+            valueArray.push(7)
+            break
+        case "8":
+            valueArray.push(8)
+            break
+        case "9":
+            valueArray.push(9)
+            break
+        default:
             break
     }
+    holdValue()
 })
